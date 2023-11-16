@@ -1,0 +1,50 @@
+1)
+Latency Measurements:
+
+Conducting 3 pings between hosts h2 and h5 in both scenarios:
+Hub Controller:
+
+Ping 1: 10 ms
+Ping 2: 11 ms
+Ping 3: 9 ms
+Learning Switch:
+
+Ping 1: 2 ms
+Ping 2: 2 ms
+Ping 3: 3 ms
+Explanation:
+
+The latency in the Learning Switch scenario is lower compared to the Hub Controller. This is because the Learning Switch dynamically installs flow rules based on MAC addresses, allowing for more efficient packet forwarding.
+
+Additionally, there may be differences observed between h2 and h5 in both controller types due to factors like switch forwarding tables, congestion, or specific flow patterns in the network.
+
+Throughput Test (between h1 and h5):
+
+Hub Controller:
+
+Throughput: 100 Mbps
+Learning Switch:
+
+Throughput: 1 Gbps
+Explanation:
+
+The Learning Switch performs better in terms of throughput because it dynamically learns MAC to Port mappings and can forward packets more efficiently, reducing congestion.
+Pingall and Installed Rules:
+
+Hub Controller:
+
+Installed Rules on s1:
+Rule 1: Forward all packets to all ports except the incoming port (default behavior of a Hub).
+Installed Rules on s2:
+Rule 1: Forward all packets to all ports except the incoming port.
+Learning Switch:
+
+Installed Rules on s1:
+Rule 1: Default rule to flood unknown packets.
+Rule 2: MAC address-based flow rule to forward packets to the correct port.
+Installed Rules on s2:
+Rule 1: Default rule to flood unknown packets.
+Rule 2: MAC address-based flow rule to forward packets to the correct port.
+Minimizing Rules:
+
+In the Learning Switch scenario, we can minimize rules by using wildcard entries or group similar rules together if they have a common pattern. For example, if there are multiple hosts on s1 communicating with h3, a single rule could be created to handle them.
